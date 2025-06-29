@@ -42,25 +42,22 @@ function Dashboard({ userType, onLogout, currentView, setCurrentView }) {
     { id: 'dashboard', icon: 'layout-dashboard', label: 'Dashboard' },
     { id: 'products', icon: 'package', label: 'Produtos' },
     { id: 'sales', icon: 'shopping-cart', label: 'Vendas' },
-    { id: 'inventory', icon: 'clipboard-list', label: 'Inventário' },
     { id: 'suppliers', icon: 'truck', label: 'Fornecedores' },
     { id: 'customers', icon: 'users', label: 'Fidelidade' },
-    { id: 'feedback', icon: 'message-circle', label: 'Feedback' },
-    { id: 'employees', icon: 'user-check', label: 'Funcionários' },
     { id: 'analytics', icon: 'chart-bar', label: 'Analytics' },
     { id: 'reports', icon: 'file-text', label: 'Relatórios' }
   ] : [
     { id: 'dashboard', icon: 'layout-dashboard', label: 'Dashboard' },
     { id: 'products', icon: 'package', label: 'Produtos' },
     { id: 'sales', icon: 'shopping-cart', label: 'Vendas' },
-    { id: 'customers', icon: 'users', label: 'Fidelidade' },
-    { id: 'feedback', icon: 'message-circle', label: 'Feedback' }
+    { id: 'customers', icon: 'users', label: 'Fidelidade' }
   ];
 
   try {
     return (
       <div className="min-h-screen product-grid" data-name="dashboard" data-file="components/Dashboard.js">
         <NotificationSystem />
+        {/* Header */}
         <header className="glass-effect shadow-lg border-b border-white/20">
           <div className="px-6 py-4 flex items-center justify-between">
             <div className="flex items-center">
@@ -85,6 +82,7 @@ function Dashboard({ userType, onLogout, currentView, setCurrentView }) {
         </header>
 
         <div className="flex">
+          {/* Sidebar */}
           <aside className="w-64 glass-effect shadow-xl h-screen border-r border-white/20">
             <nav className="p-4">
               <ul className="space-y-2">
@@ -103,6 +101,7 @@ function Dashboard({ userType, onLogout, currentView, setCurrentView }) {
             </nav>
           </aside>
 
+          {/* Main Content */}
           <main className="flex-1 p-6">
             {currentView === 'dashboard' && (
               <div>
@@ -162,11 +161,8 @@ function Dashboard({ userType, onLogout, currentView, setCurrentView }) {
             
             {currentView === 'products' && <ProductManagement userType={userType} />}
             {currentView === 'sales' && <SalesManagement userType={userType} />}
-            {currentView === 'inventory' && userType === 'admin' && <InventoryManagement userType={userType} />}
             {currentView === 'suppliers' && userType === 'admin' && <SupplierManagement userType={userType} />}
             {currentView === 'customers' && <CustomerLoyalty userType={userType} />}
-            {currentView === 'feedback' && <CustomerFeedback userType={userType} />}
-            {currentView === 'employees' && userType === 'admin' && <EmployeePerformance userType={userType} />}
             {currentView === 'analytics' && userType === 'admin' && <Analytics />}
             {currentView === 'reports' && userType === 'admin' && <Reports />}
           </main>
